@@ -10,5 +10,18 @@
       <app-user [user]="user" (selectedUser)="onSelectUser($event)" />
     }
   </ul>
-  <app-tasks [userName]="selectedUser?.name" />
+  <!--
+  <div *ngIf="selectedUser; else fallback">
+    <app-tasks [userName]="selectedUser.name" />
+  </div>
+  <ng-template #fallback>
+    <p id="fallback">Select a user to see their tasks</p>
+  </ng-template>
+  -->
+  <!-- Nova sintaxe @if a partir do Angular 17, assim como o@for não depende do CommonModule -->
+  @if (selectedUser) {
+    <app-tasks [userId]="selectedUser.id" [userName]="selectedUser.name" />
+  } @else {
+    <p id="fallback">Select a user to see their tasks</p>
+  }
 </main>
