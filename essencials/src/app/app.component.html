@@ -7,7 +7,11 @@
     </li>  -->
     <!-- Nova sintaxe @for a partir do Angular 17, pode ser usada para templates mais simples, para os mais complexos o @ngFor ainda é melhor e tem mais opções -->
     @for (user of users; track user.id) {
-      <app-user [user]="user" (selectedUser)="onSelectUser($event)" />
+      <app-user
+        [user]="user"
+        [selected]="user.id === selectedUserId"
+        (selectedUser)="onSelectUser($event)"
+      />
     }
   </ul>
   <!--
