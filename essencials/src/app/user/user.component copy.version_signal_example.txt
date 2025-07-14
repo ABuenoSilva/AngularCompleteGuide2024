@@ -11,6 +11,11 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
   styleUrl: './user.component.css'
 })
 export class UserComponent {
+
+  //Input como signal
+  avatar = input<string>();
+  name = input.required<string>();
+  imagePath = computed(() => `assets/users/${this.avatar()}`);
   //Signal procura por subscribers para atualizar, diferente de utilizar state com zone.js que procura por todos os locais
   selectedUser = signal(DUMMY_USERS[randomIndex]);
   //Compute deve ser usado para fazer subscribe implícito no signal ao invés de criar um get diretamente
